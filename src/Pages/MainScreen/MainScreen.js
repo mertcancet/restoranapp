@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Container, Nav, Button, Card, Modal, Col, Row } from "react-bootstrap";
+import {
+  Container,
+  Nav,
+  Button,
+  Card,
+  Modal,
+  Col,
+  Row,
+  Table,
+} from "react-bootstrap";
 import "./MainScreen.css";
 
 function MainScreen() {
@@ -116,17 +125,69 @@ function MainScreen() {
                 </Card>
               </Col>
               <Col xs={12} md={5}>
-                <Button className="mt-3" variant="danger" size="lg" block>
-                  Hesap Al
-                </Button>
-
                 <Card className="tableCard--orderList mt-3">
                   <Card.Header> Siparişler</Card.Header>
-                  <Card.Body></Card.Body>
+                  <Card.Body>
+                    <Table bordered hover size="sm" responsive="md">
+                      <thead>
+                        <tr>
+                          <th>Adet</th>
+                          <th>Ürün Adı</th>
+                          <th>Fiyatı</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>Jacob</td>
+                          <td>Thornton</td>
+                        </tr>
+
+                        <tr>
+                          <td>1</td>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                        </tr>
+                        <tr>
+                          <td>1</td>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                        </tr>
+                        <tr>
+                          <td>1</td>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                        </tr>
+                        <tr>
+                          <td>1</td>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                        </tr>
+                        <tr>
+                          <td>1</td>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                        </tr>
+                        <tr>
+                          <td>1</td>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                        </tr>
+                      </tbody>
+                    </Table>
+                  </Card.Body>
                   <Card.Footer className="text-right">
                     Sipariş Tutarı: <b>100 TL</b>
                   </Card.Footer>
                 </Card>
+                <Button className="mt-3" variant="danger" size="lg" block>
+                  Hesap Al
+                </Button>
               </Col>
             </Row>
           </Container>
