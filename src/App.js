@@ -1,9 +1,10 @@
 import React from "react";
 import "./App.css";
 import TopNavbar from "./Components/Navbar/navbar";
-import MainScreen from "./Pages/MainScreen/MainScreen";
-import Welcome from "./Pages/Welcome/Welcome";
-import About from "./Pages/About/About";
+import MainScreen from "./Components/MainScreen/MainScreen";
+import Welcome from "./Components/Welcome/Welcome";
+import DefineTable from "./Components/Defination/DefineTable/DefineTable";
+import About from "./Components/About/About";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 function App() {
@@ -14,7 +15,8 @@ function App() {
       <Switch>
         <Route path={"/welcome"} component={Welcome} />
         <Route path={"/about"} component={About} />
-        <Route path={"/anasayfa"} component={MainScreen} />
+        <Route exact path={"/anasayfa"} component={MainScreen} />
+        <Route path={"/masa-tanimla"} component={DefineTable} />
       </Switch>
     </BrowserRouter>
   );

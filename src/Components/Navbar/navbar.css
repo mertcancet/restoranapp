@@ -3,25 +3,18 @@
   color: white;
 }
 
-.styled a,
-.navbar-nav,
-.navbar-light .nav-link {
-  color: red;
-}
 .styled .navbar-brand {
   color: white;
 }
 .styled .nav-item {
   color: white;
 }
-.styled a,
-.navbar-nav,
-.navbar-light .nav-link :hover {
-  color: red;
-}
 
 .styled .form-center {
   position: absolute !important;
   left: 25%;
   right: 25%;
+}
+#collasible-nav-dropdown {
+  color: white;
 }
