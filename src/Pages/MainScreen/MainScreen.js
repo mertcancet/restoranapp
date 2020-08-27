@@ -19,13 +19,69 @@ function MainScreen() {
             </Nav>
           </Card.Header>
           <Card.Body>
-            <button className="tableBtn mx-2 my-1">Masa 1</button>
-            <button className="tableBtn mx-2 my-1">Masa 2</button>
-            <button className="tableBtn mx-2 my-1">Masa 3</button>
+            <button
+              className="tableBtn mx-2 my-1"
+              onClick={() => setLgShow(true)}
+            >
+              Masa 1
+            </button>
+            <button
+              className="tableBtn mx-2 my-1"
+              onClick={() => setLgShow(true)}
+            >
+              Masa 2
+            </button>
+            <button
+              className="tableBtn mx-2 my-1"
+              onClick={() => setLgShow(true)}
+            >
+              Masa 3
+            </button>
+            <button
+              className="tableBtn mx-2 my-1"
+              onClick={() => setLgShow(true)}
+            >
+              Masa 4
+            </button>
+            <button
+              className="tableBtn mx-2 my-1"
+              onClick={() => setLgShow(true)}
+            >
+              Masa 5
+            </button>
+            <button
+              className="tableBtn mx-2 my-1"
+              onClick={() => setLgShow(true)}
+            >
+              Masa 6
+            </button>
+            <button
+              className="tableBtn mx-2 my-1"
+              onClick={() => setLgShow(true)}
+            >
+              Masa 7
+            </button>
+            <button
+              className="tableBtn mx-2 my-1"
+              onClick={() => setLgShow(true)}
+            >
+              Masa 8
+            </button>
+            <button
+              className="tableBtn mx-2 my-1"
+              onClick={() => setLgShow(true)}
+            >
+              Masa 9
+            </button>
+            <button
+              className="tableBtn mx-2 my-1"
+              onClick={() => setLgShow(true)}
+            >
+              Masa 10
+            </button>
           </Card.Body>
         </Card>
       </Container>
-      <Button onClick={() => setLgShow(true)}>Large modal</Button>
 
       <Modal
         size="lg"
@@ -41,23 +97,36 @@ function MainScreen() {
         <Modal.Body className="show-grid">
           <Container>
             <Row>
-              <Col xs={12} md={8}>
+              <Col xs={12} md={7}>
                 <Card className="tableCard mt-3">
+                  <Card.Header>Kategoriler</Card.Header>
                   <Card.Header>
                     <Nav variant="tabs" defaultActiveKey="#first">
                       <Nav.Item>
-                        <Nav.Link href="#first">İçeri</Nav.Link>
+                        <Nav.Link href="#Anayemek">Ana Yemek</Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link href="#link">Dışarı</Nav.Link>
+                        <Nav.Link href="#tatli">Tatlı</Nav.Link>
+                      </Nav.Item>
+                      <Nav.Item>
+                        <Nav.Link href="#icecek">İçecek</Nav.Link>
                       </Nav.Item>
                     </Nav>
                   </Card.Header>
                 </Card>
               </Col>
-              <Col xs={6} md={4}>
-                <Button></Button>
-                .col-xs-6 .col-md-4
+              <Col xs={12} md={5}>
+                <Button className="mt-3" variant="danger" size="lg" block>
+                  Hesap Al
+                </Button>
+
+                <Card className="tableCard--orderList mt-3">
+                  <Card.Header> Siparişler</Card.Header>
+                  <Card.Body></Card.Body>
+                  <Card.Footer className="text-right">
+                    Sipariş Tutarı: <b>100 TL</b>
+                  </Card.Footer>
+                </Card>
               </Col>
             </Row>
           </Container>
