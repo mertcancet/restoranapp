@@ -5,7 +5,6 @@ import "./navbar.css";
 
 export class TopNavbar extends Component {
   render() {
-    const { history } = this.props;
     return (
       <div className="styled">
         <Navbar expand="lg">

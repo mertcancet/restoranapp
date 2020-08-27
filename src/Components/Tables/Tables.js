@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import {
   Modal,
-  Nav,
   Card,
   Container,
   Row,
   Col,
   Table,
   Button,
+  Tab,
+  Tabs,
 } from "react-bootstrap";
 import "./Tables.css";
 
 function Tables() {
   const [lgShow, setLgShow] = useState(false);
+  const [key, setKey] = useState("ic-mekan");
   return (
     <div>
       <button className="tableBtn mx-2 my-1" onClick={() => setLgShow(true)}>
@@ -63,19 +65,25 @@ function Tables() {
               <Col xs={12} md={6}>
                 <Card className="tableCard mt-3">
                   <Card.Header>Kategoriler</Card.Header>
-                  <Card.Header>
-                    <Nav variant="tabs" defaultActiveKey="#first">
-                      <Nav.Item>
-                        <Nav.Link href="#Anayemek">Ana Yemek</Nav.Link>
-                      </Nav.Item>
-                      <Nav.Item>
-                        <Nav.Link href="#tatli">Tatlı</Nav.Link>
-                      </Nav.Item>
-                      <Nav.Item>
-                        <Nav.Link href="#icecek">İçecek</Nav.Link>
-                      </Nav.Item>
-                    </Nav>
-                  </Card.Header>
+                  <Card.Body>
+                    <Tabs
+                      id="controlled-tab-example"
+                      activeKey={key}
+                      onSelect={(k) => setKey(k)}
+                    >
+                      <Tab eventKey="ana-yemek" title="Ana Yemek">
+                        <div className="my-2">Ana Yemek</div>
+                      </Tab>
+                      <Tab eventKey="ara-sicak" title="Ara Sıcak">
+                        <Card.Body>
+                          <div className="my-2">Ara Sıcak</div>
+                        </Card.Body>
+                      </Tab>
+                      <Tab eventKey="icecek" title="İçecek">
+                        <div className="my-2">İçecek</div>
+                      </Tab>
+                    </Tabs>
+                  </Card.Body>
                 </Card>
               </Col>
               <Col xs={12} md={6}>
