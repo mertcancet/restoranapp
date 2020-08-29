@@ -3,7 +3,7 @@ import "./App.css";
 import TopNavbar from "./Components/Navbar/navbar";
 import MainScreen from "./Components/MainScreen/MainScreen";
 import Welcome from "./Components/Welcome/Welcome";
-import DefineTable from "./Components/Defination/DefineTable/DefineTable";
+import DefineTable from "./Components/Defination/DefineTable";
 import About from "./Components/About/About";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
