@@ -1,0 +1,18 @@
+.tableBtn {
+  border-radius: 5px;
+  background-color: #333;
+  color: white;
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+  width: 150px;
+  height: 75px;
+}
+
+.addTableBtn {
+  width: 150px;
+  height: 75px;
+}
+.addPlace {
+  background-color: red !important;
+}

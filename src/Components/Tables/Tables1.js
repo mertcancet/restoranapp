@@ -17,10 +17,9 @@ function Tables() {
 
   return (
     <div>
-      <button
-        className="tableBtn mx-2 my-1"
-        onClick={() => setLgShow(true)}
-      ></button>
+      <button className="tableBtn mx-2 my-1" onClick={() => setLgShow(true)}>
+        Masa 1
+      </button>
 
       <Modal
         size="lg"

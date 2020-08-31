@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Card, Tabs, Tab } from "react-bootstrap";
-import Tables from "../Tables/Tables";
+import Tabless from "../Tables/Tables1";
 import "./MainScreen.css";
 
 function MainScreen() {
@@ -17,12 +17,12 @@ function MainScreen() {
             >
               <Tab eventKey="ic-mekan" title="İç Mekan">
                 <div className="my-2">
-                  <Tables />
+                  <Tabless />
                 </div>
               </Tab>
               <Tab eventKey="bahce" title="Bahce">
                 <div className="my-2">
-                  <Tables />
+                  <Tabless />
                 </div>
               </Tab>
             </Tabs>
