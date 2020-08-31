@@ -1,14 +1,14 @@
 const INITIAL_STATE = {
-  mekan: [
-    { mekanId: 0, mekanAdi: "İçerisi" },
-    { mekanId: 1, mekanAdi: "Salon" },
+  area: [
+    { areaId: 0, areaName: "İçerisi" },
+    { areaId: 1, areaName: "Salon" },
   ],
-  masa: [
-    { masaId: 0, mekanId: 0, masaAdi: "Masa 1" },
-    { masaId: 0, mekanId: 0, masaAdi: "Masa 2" },
-    { masaId: 0, mekanId: 0, masaAdi: "Masa 3" },
-    { masaId: 0, mekanId: 0, masaAdi: "Masa 4" },
-    { masaId: 0, mekanId: 1, masaAdi: "Masa 5" },
+  table: [
+    { tableId: 0, areaId: 0, tableName: "Masa 1" },
+    { tableId: 0, areaId: 0, tableName: "Masa 2" },
+    { tableId: 0, areaId: 0, tableName: "Masa 3" },
+    { tableId: 0, areaId: 0, tableName: "Masa 4" },
+    { tableId: 0, areaId: 1, tableName: "Masa 5" },
   ],
 };
 

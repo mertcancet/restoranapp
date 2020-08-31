@@ -17,8 +17,8 @@ const DefineTable = (props) => {
               activeKey={key}
               onSelect={(k) => setKey(k)}
             >
-              {props.mekan.map((mekan) => (
-                <Tab eventKey={mekan.mekanId} title={mekan.mekanAdi}>
+              {props.area.map((mekan) => (
+                <Tab eventKey={mekan.areaId} title={mekan.areaName}>
                   <Button variant="outline-danger" className="m-3 addTableBtn">
                     Bölge İsmi Değiştir
                   </Button>
@@ -26,10 +26,10 @@ const DefineTable = (props) => {
                     Bölge Sil
                   </Button>
                   <br />
-                  {props.masa.map((masa) =>
-                    masa.mekanId === mekan.mekanId ? (
+                  {props.table.map((masa) =>
+                    masa.areaId === mekan.areaId ? (
                       <button className="tableBtn mx-2 my-1">
-                        {masa.masaAdi}
+                        {masa.tableName}
                       </button>
                     ) : (
                       ""
@@ -51,8 +51,8 @@ const DefineTable = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    mekan: state.mekan,
-    masa: state.masa,
+    area: state.area,
+    table: state.table,
   };
 };
 
