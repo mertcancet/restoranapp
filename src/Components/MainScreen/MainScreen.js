@@ -22,15 +22,9 @@ function MainScreen(props) {
                   eventKey={mekan.areaId}
                   title={mekan.areaName}
                 >
-                  <div className="my-2">
-                    <Tabless />
-                  </div>
-
                   {props.table.map((masa) =>
                     masa.areaId === mekan.areaId ? (
-                      <button key={masa.tableId} className="tableBtn mx-2 my-1">
-                        {masa.tableName}
-                      </button>
+                      <Tabless key={Math.random()} tableName={masa.tableName} />
                     ) : (
                       ""
                     )

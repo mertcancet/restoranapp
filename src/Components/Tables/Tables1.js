@@ -11,14 +11,14 @@ import {
   Tabs,
 } from "react-bootstrap";
 
-function Tables() {
+function Tables(props) {
   const [lgShow, setLgShow] = useState(false);
   const [key, setKey] = useState("ic-mekan");
 
   return (
-    <div>
+    <>
       <button className="tableBtn mx-2 my-1" onClick={() => setLgShow(true)}>
-        Masa 1
+        {props.tableName}
       </button>
 
       <Modal
@@ -176,7 +176,7 @@ function Tables() {
           </Container>
         </Modal.Body>
       </Modal>
-    </div>
+    </>
   );
 }
 

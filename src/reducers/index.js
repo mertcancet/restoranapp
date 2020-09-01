@@ -31,6 +31,10 @@ export const reducer = (state = INITIAL_STATE, action) => {
         area: state.area.filter((area) => area.areaId !== action.payload),
         table: state.table.filter((table) => table.areaId !== action.payload),
       };
+    case "UPDATE_AREA":
+      return {
+        state,
+      };
     default:
       return state;
   }
