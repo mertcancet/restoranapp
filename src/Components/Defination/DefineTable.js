@@ -12,6 +12,11 @@ const DefineTable = (props) => {
 
   const [areaName, setAreaName] = useState("");
 
+  const [showChangeAraeName, setShowChangeAraeName] = useState(false);
+
+  const handleCloseChangeAreaNameModal = () => setShowChangeAraeName(false);
+  const handleShowChangeAreaNameModal = () => setShowChangeAraeName(true);
+
   const handleClose = () => {
     setShow(false);
     setAreaName("");
@@ -54,6 +59,7 @@ const DefineTable = (props) => {
                     key={Math.random()}
                     variant="outline-danger"
                     className="m-3 addTableBtn"
+                    onClick={handleShowChangeAreaNameModal}
                   >
                     Bölge İsmi Değiştir
                   </Button>
@@ -110,6 +116,34 @@ const DefineTable = (props) => {
               </Button>
             </Modal.Footer>
           </form>
+        </Modal>
+
+
+
+        
+
+        <Modal
+          show={showChangeAraeName}
+          onHide={handleCloseChangeAreaNameModal}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Bölge İsmi Değiştir</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p> Bu isimli yerin adınıı BURAYA PROPS GECİLCEKK</p>
+            <input></input>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="secondary"
+              onClick={handleCloseChangeAreaNameModal}
+            >
+              Kapat
+            </Button>
+            <Button variant="danger" onClick={handleCloseChangeAreaNameModal}>
+              Kaydet
+            </Button>
+          </Modal.Footer>
         </Modal>
       </Container>
     </div>

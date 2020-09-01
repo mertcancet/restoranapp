@@ -17,7 +17,7 @@ function Tables(props) {
 
   return (
     <>
-      <button className="tableBtn mx-2 my-1" onClick={() => setLgShow(true)}>
+      <button className="tableBtn  mt-2" onClick={() => setLgShow(true)}>
         {props.tableName}
       </button>
 

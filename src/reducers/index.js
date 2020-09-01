@@ -33,7 +33,15 @@ export const reducer = (state = INITIAL_STATE, action) => {
       };
     case "UPDATE_AREA":
       return {
-        state,
+        area: state.area.map((area) => {
+          if (area.areaId === action.id) {
+            return {
+              ...area,
+              areaName: action.name,
+            };
+          }
+          return area;
+        }),
       };
     default:
       return state;
