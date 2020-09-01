@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { Container, Card, Tabs, Tab } from "react-bootstrap";
 import Tabless from "../Tables/Tables1";
 import "./MainScreen.css";
 
-function MainScreen() {
+function MainScreen(props) {
   const [key, setKey] = useState("ic-mekan");
   return (
     <div className="mainScreen">
@@ -15,16 +16,27 @@ function MainScreen() {
               activeKey={key}
               onSelect={(k) => setKey(k)}
             >
-              <Tab eventKey="ic-mekan" title="İç Mekan">
-                <div className="my-2">
-                  <Tabless />
-                </div>
-              </Tab>
-              <Tab eventKey="bahce" title="Bahce">
-                <div className="my-2">
-                  <Tabless />
-                </div>
-              </Tab>
+              {props.area.map((mekan) => (
+                <Tab
+                  key={mekan.areaId}
+                  eventKey={mekan.areaId}
+                  title={mekan.areaName}
+                >
+                  <div className="my-2">
+                    <Tabless />
+                  </div>
+
+                  {props.table.map((masa) =>
+                    masa.areaId === mekan.areaId ? (
+                      <button key={masa.tableId} className="tableBtn mx-2 my-1">
+                        {masa.tableName}
+                      </button>
+                    ) : (
+                      ""
+                    )
+                  )}
+                </Tab>
+              ))}
             </Tabs>
           </Card.Body>
         </Card>
@@ -33,4 +45,11 @@ function MainScreen() {
   );
 }
 
-export default MainScreen;
+const mapStateToProps = (state) => {
+  return {
+    area: state.area,
+    table: state.table,
+  };
+};
+
+export default connect(mapStateToProps)(MainScreen);

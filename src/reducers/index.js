@@ -6,8 +6,8 @@ const INITIAL_STATE = {
   table: [
     { tableId: 0, areaId: 0, tableName: "Masa 1" },
     { tableId: 1, areaId: 1, tableName: "Masa 2" },
-    { tableId: 2, areaId: 2, tableName: "Masa 3" },
-    { tableId: 3, areaId: 3, tableName: "Masa 4" },
+    { tableId: 2, areaId: 1, tableName: "Masa 3" },
+    { tableId: 3, areaId: 1, tableName: "Masa 4" },
     { tableId: 4, areaId: 4, tableName: "Masa 5" },
   ],
 };

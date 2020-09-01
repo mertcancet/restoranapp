@@ -1,20 +1,27 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./navbar.css";
 
 export class TopNavbar extends Component {
   render() {
+    const { history } = this.props;
     return (
       <div className="styled">
         <Navbar expand="lg">
-          <Navbar.Brand href="/anasayfa">Tutorial</Navbar.Brand>
+          <Navbar.Brand onClick={() => history && history.push("/anasayfa")}>
+            Tutorial
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
               <Nav.Item>
-                <Nav.Link className="text-white" href="/anasayfa">
+                <Nav.Link
+                  className="text-white"
+                  onClick={() => history && history.push("/anasayfa")}
+                >
                   Ana Sayfa
                 </Nav.Link>
               </Nav.Item>
@@ -23,22 +30,38 @@ export class TopNavbar extends Component {
                 title="Tanımlamalar"
                 id="collasible-nav-dropdown"
               >
-                <NavDropdown.Item href="/musteri-tanimla">
+                <NavDropdown.Item
+                  onClick={() => history && history.push("/musteri-tanimla")}
+                >
                   Müşteri
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
 
-                <NavDropdown.Item href="/masa-tanimla">Masa</NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() => history && history.push("/masa-tanimla")}
+                >
+                  Masa
+                </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="/urun-tanimla">Ürün</NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() => history && history.push("/urun-tanimla")}
+                >
+                  Ürün
+                </NavDropdown.Item>
               </NavDropdown>
               <Nav.Item>
-                <Nav.Link className="text-white" href="/welcome">
+                <Nav.Link
+                  className="text-white"
+                  onClick={() => history && history.push("/welcome")}
+                >
                   Home
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link className="text-white" href="/about">
+                <Nav.Link
+                  className="text-white"
+                  onClick={() => history && history.push("/about")}
+                >
                   About
                 </Nav.Link>
               </Nav.Item>
@@ -50,4 +73,4 @@ export class TopNavbar extends Component {
   }
 }
 
-export default TopNavbar;
+export default withRouter(TopNavbar);
