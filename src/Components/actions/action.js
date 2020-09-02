@@ -8,6 +8,6 @@ export const addArea = (area) => {
 export const deleteArea = (area) => {
   return { type: DELETE_AREA, payload: area };
 };
-export const updateArea = (area) => {
-  return { type: UPDATE_AREA, payload: area };
+export const updateArea = (id, newAreaName) => {
+  return { type: UPDATE_AREA, payload: { id, newAreaName } };
 };

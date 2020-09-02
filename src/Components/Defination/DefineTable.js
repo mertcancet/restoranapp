@@ -2,26 +2,26 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Container, Card, Tabs, Tab, Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import "./Definetable.css";
-import { addArea, deleteArea } from "../actions/action";
+import { addArea, deleteArea, updateArea } from "../actions/action";
 
 const DefineTable = (props) => {
   const [key, setKey] = useState("");
   const [show, setShow] = useState(false);
-
   const [areaName, setAreaName] = useState("");
-
+  const [editAreaName, setEditAreaName] = useState("");
   const [showChangeAraeName, setShowChangeAraeName] = useState(false);
 
-  const handleCloseChangeAreaNameModal = () => setShowChangeAraeName(false);
+  const handleShow = () => setShow(true);
+  const handleCloseChangeAreaNameModal = () => {
+    setShowChangeAraeName(false);
+  };
   const handleShowChangeAreaNameModal = () => setShowChangeAraeName(true);
 
   const handleClose = () => {
     setShow(false);
     setAreaName("");
   };
-  const handleShow = () => setShow(true);
 
   function addAreaHandle(e) {
     setAreaName(e);
@@ -29,15 +29,22 @@ const DefineTable = (props) => {
   }
   function addAreaSubmit(e) {
     e.preventDefault();
-    console.log("submit", areaName);
+
     props.addArea(areaName);
     setShow(false);
   }
 
   function deleteAreaHandle(id) {
-    console.log("delete", id);
     props.deleteArea(id);
   }
+
+  function areaNameUpdateSubmit(e, areaId) {
+    e.preventDefault();
+
+    props.updateArea(areaId, editAreaName);
+    console.log(props);
+  }
+  console.log(props);
   return (
     <div>
       <Container>
@@ -54,7 +61,19 @@ const DefineTable = (props) => {
                   eventKey={mekan.areaId}
                   title={mekan.areaName}
                 >
-                  <h1>mekan adı:{mekan.areaId}</h1>
+                  <form
+                    className="alert alert-primary m-5"
+                    onSubmit={(e) => areaNameUpdateSubmit(e, mekan.areaId)}
+                  >
+                    <h1>mekan adı:{mekan.areaName}</h1>
+                    <input
+                      onChange={(e) => setEditAreaName(e.target.value)}
+                    ></input>
+                    <button type="submit" className="alert alert-danger">
+                      Bölge ismini değiştir
+                    </button>
+                  </form>
+
                   <Button
                     key={Math.random()}
                     variant="outline-danger"
@@ -79,11 +98,17 @@ const DefineTable = (props) => {
                     Bölge Ekle
                   </Button>
                   <br />
+
                   {props.table.map((masa) =>
                     masa.areaId === mekan.areaId ? (
-                      <button key={masa.tableId} className="tableBtn mx-2 my-1">
-                        {masa.tableName}
-                      </button>
+                      <>
+                        <button
+                          key={masa.tableId}
+                          className="tableBtn mx-2 my-1"
+                        >
+                          {masa.tableName}
+                        </button>
+                      </>
                     ) : (
                       ""
                     )
@@ -117,11 +142,6 @@ const DefineTable = (props) => {
             </Modal.Footer>
           </form>
         </Modal>
-
-
-
-        
-
         <Modal
           show={showChangeAraeName}
           onHide={handleCloseChangeAreaNameModal}
@@ -130,7 +150,7 @@ const DefineTable = (props) => {
             <Modal.Title>Bölge İsmi Değiştir</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <p> Bu isimli yerin adınıı BURAYA PROPS GECİLCEKK</p>
+            <p>isimli yerin adını değiştiriyosunuz</p>
             <input></input>
           </Modal.Body>
           <Modal.Footer>
@@ -157,4 +177,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { addArea, deleteArea })(DefineTable);
+export default connect(mapStateToProps, { addArea, deleteArea, updateArea })(
+  DefineTable
+);

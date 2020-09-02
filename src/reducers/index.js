@@ -34,10 +34,11 @@ export const reducer = (state = INITIAL_STATE, action) => {
     case "UPDATE_AREA":
       return {
         area: state.area.map((area) => {
-          if (area.areaId === action.id) {
+          console.log(state.area);
+          if (area.areaId === action.payload.id) {
             return {
               ...area,
-              areaName: action.name,
+              areaName: action.payload.newAreaName,
             };
           }
           return area;
