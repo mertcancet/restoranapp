@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Container, Card, Tabs, Tab, Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Definetable.css";
-import { addArea, deleteArea, updateArea } from "../actions/action";
+import { addArea, deleteArea, updateArea, addTable } from "../actions/action";
 
 const DefineTable = (props) => {
   const [key, setKey] = useState("");
@@ -25,11 +25,9 @@ const DefineTable = (props) => {
 
   function addAreaHandle(e) {
     setAreaName(e);
-    console.log(e);
   }
   function addAreaSubmit(e) {
     e.preventDefault();
-
     props.addArea(areaName);
     setShow(false);
   }
@@ -42,9 +40,14 @@ const DefineTable = (props) => {
     e.preventDefault();
 
     props.updateArea(areaId, editAreaName);
-    console.log(props);
   }
-  
+
+  function addTableHandle(areaId) {
+    console.log("butona tıklandı = ", areaId);
+    props.addTable(areaId);
+    // console.log(props);
+  }
+  console.log("props geldi", props);
   return (
     <div>
       <Container>
@@ -99,20 +102,18 @@ const DefineTable = (props) => {
                   </Button>
                   <br />
 
-                  <Button variant="danger" className="addTableBtn">
-                    Masa Ekle
+                  <Button
+                    variant="danger"
+                    className="addTableBtn"
+                    onClick={() => addTableHandle(mekan.areaId)}
+                  >
+                    Masa Ekle{}
                   </Button>
                   {props.table.map((masa) =>
                     masa.areaId === mekan.areaId ? (
-                      
-                      
-                        <button
-                          key={masa.tableId}
-                          className="tableBtn mx-2 my-1"
-                        >
-                          {masa.tableName}
-                        </button>
-                      
+                      <button key={masa.tableId} className="tableBtn mx-2 my-1">
+                        {masa.tableName}
+                      </button>
                     ) : (
                       ""
                     )
@@ -178,6 +179,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { addArea, deleteArea, updateArea })(
-  DefineTable
-);
+export default connect(mapStateToProps, {
+  addArea,
+  deleteArea,
+  updateArea,
+  addTable,
+})(DefineTable);

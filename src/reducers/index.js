@@ -44,6 +44,19 @@ export const reducer = (state = INITIAL_STATE, action) => {
           return area;
         }),
       };
+
+    case "ADD_TABLE":
+      return {
+        ...state,
+        table: [
+          ...state.table,
+          {
+            tableId: Math.random(),
+            areaId: action.payload,
+            tableName: "Yeni Masa",
+          },
+        ],
+      };
     default:
       return state;
   }
