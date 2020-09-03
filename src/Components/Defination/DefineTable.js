@@ -44,7 +44,7 @@ const DefineTable = (props) => {
     props.updateArea(areaId, editAreaName);
     console.log(props);
   }
-  console.log(props);
+  
   return (
     <div>
       <Container>
@@ -99,23 +99,24 @@ const DefineTable = (props) => {
                   </Button>
                   <br />
 
+                  <Button variant="danger" className="addTableBtn">
+                    Masa Ekle
+                  </Button>
                   {props.table.map((masa) =>
                     masa.areaId === mekan.areaId ? (
-                      <>
+                      
+                      
                         <button
                           key={masa.tableId}
                           className="tableBtn mx-2 my-1"
                         >
                           {masa.tableName}
                         </button>
-                      </>
+                      
                     ) : (
                       ""
                     )
                   )}
-                  <Button variant="danger" className="addTableBtn">
-                    Masa Ekle
-                  </Button>
                 </Tab>
               ))}
             </Tabs>

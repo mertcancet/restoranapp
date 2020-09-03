@@ -8,7 +8,7 @@ const INITIAL_STATE = {
     { tableId: 1, areaId: 1, tableName: "Masa 2" },
     { tableId: 2, areaId: 1, tableName: "Masa 3" },
     { tableId: 3, areaId: 1, tableName: "Masa 4" },
-    { tableId: 4, areaId: 4, tableName: "Masa 5" },
+    { tableId: 4, areaId: 1, tableName: "Masa 5" },
   ],
 };
 
@@ -33,11 +33,11 @@ export const reducer = (state = INITIAL_STATE, action) => {
       };
     case "UPDATE_AREA":
       return {
+        ...state,
         area: state.area.map((area) => {
-          console.log(state.area);
           if (area.areaId === action.payload.id) {
             return {
-              ...area,
+              areaId: area.areaId,
               areaName: action.payload.newAreaName,
             };
           }
