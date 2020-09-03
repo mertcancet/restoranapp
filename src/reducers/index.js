@@ -57,6 +57,12 @@ export const reducer = (state = INITIAL_STATE, action) => {
           },
         ],
       };
+
+    case "DELETE_TABLE":
+      return {
+        ...state,
+        table: state.table.filter((table) => table.tableId !== action.payload),
+      };
     default:
       return state;
   }

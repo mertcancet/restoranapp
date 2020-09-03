@@ -3,7 +3,13 @@ import { connect } from "react-redux";
 import { Container, Card, Tabs, Tab, Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Definetable.css";
-import { addArea, deleteArea, updateArea, addTable } from "../actions/action";
+import {
+  addArea,
+  deleteArea,
+  updateArea,
+  addTable,
+  deleteTable,
+} from "../actions/action";
 
 const DefineTable = (props) => {
   const [key, setKey] = useState("");
@@ -43,10 +49,14 @@ const DefineTable = (props) => {
   }
 
   function addTableHandle(areaId) {
-    console.log("butona tıklandı = ", areaId);
     props.addTable(areaId);
-    // console.log(props);
   }
+  function deleteTableHandle(e, tableId) {
+    e.stopPropagation();
+    console.log("table id :", tableId);
+    props.deleteTable(tableId);
+  }
+
   console.log("props geldi", props);
   return (
     <div>
@@ -113,6 +123,16 @@ const DefineTable = (props) => {
                     masa.areaId === mekan.areaId ? (
                       <button key={masa.tableId} className="tableBtn mx-2 my-1">
                         {masa.tableName}
+                        <button
+                          type="button"
+                          className="close "
+                          aria-label="Close"
+                          onClick={(e) => deleteTableHandle(e, masa.tableId)}
+                        >
+                          <span aria-hidden="true" className="text-white">
+                            &times;
+                          </span>
+                        </button>
                       </button>
                     ) : (
                       ""
@@ -184,4 +204,5 @@ export default connect(mapStateToProps, {
   deleteArea,
   updateArea,
   addTable,
+  deleteTable,
 })(DefineTable);
