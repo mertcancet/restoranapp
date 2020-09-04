@@ -9,14 +9,24 @@ import {
   updateArea,
   addTable,
   deleteTable,
+  updateTable,
 } from "../actions/action";
 
 const DefineTable = (props) => {
+  //DEFINE TABLE STATE//
+  const [tableIdForModal, setTableIdForModal] = useState();
+  const [tableNameForRedux, setTableNameForRedux] = useState("");
+
+  //MODAL STATE//
   const [key, setKey] = useState("");
   const [show, setShow] = useState(false);
   const [areaName, setAreaName] = useState("");
   const [editAreaName, setEditAreaName] = useState("");
   const [showChangeAraeName, setShowChangeAraeName] = useState(false);
+  const [editTableModalShow, setEditTableModalShow] = useState(false);
+
+  const editTableModalHandleClose = () => setEditTableModalShow(false);
+  const editTableModalHandleShow = () => setEditTableModalShow(true);
 
   const handleShow = () => setShow(true);
   const handleCloseChangeAreaNameModal = () => {
@@ -44,7 +54,6 @@ const DefineTable = (props) => {
 
   function areaNameUpdateSubmit(e, areaId) {
     e.preventDefault();
-
     props.updateArea(areaId, editAreaName);
   }
 
@@ -53,11 +62,21 @@ const DefineTable = (props) => {
   }
   function deleteTableHandle(e, tableId) {
     e.stopPropagation();
-    console.log("table id :", tableId);
     props.deleteTable(tableId);
   }
+  function editTableName(tableId) {
+    editTableModalHandleShow();
+    setTableIdForModal(tableId);
+  }
+  function editTableHandle(e) {
+    e.preventDefault();
 
-  console.log("props geldi", props);
+    console.log("input value", tableNameForRedux);
+    console.log("tableId:", tableIdForModal);
+    props.updateTable(tableIdForModal, tableNameForRedux);
+  }
+
+  // console.log("props geldi", props);
   return (
     <div>
       <Container>
@@ -121,7 +140,11 @@ const DefineTable = (props) => {
                   </Button>
                   {props.table.map((masa) =>
                     masa.areaId === mekan.areaId ? (
-                      <button key={masa.tableId} className="tableBtn mx-2 my-1">
+                      <button
+                        key={masa.tableId}
+                        className="tableBtn mx-2 my-1"
+                        onClick={() => editTableName(masa.tableId)}
+                      >
                         {masa.tableName}
                         <button
                           type="button"
@@ -143,6 +166,34 @@ const DefineTable = (props) => {
             </Tabs>
           </Card.Body>
         </Card>
+
+        <Modal show={editTableModalShow} onHide={editTableModalHandleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>
+              Masa Adı Güncelle tableId: {tableIdForModal}
+            </Modal.Title>
+          </Modal.Header>
+          <form onSubmit={(e) => editTableHandle(e)}>
+            <Modal.Body>
+              <p>Masa Adı Giriniz:</p>
+              <input
+                onChange={(e) => setTableNameForRedux(e.target.value)}
+              ></input>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={editTableModalHandleClose}>
+                Kapat
+              </Button>
+              <Button
+                variant="danger"
+                type="submit"
+                onClick={editTableModalHandleClose}
+              >
+                Kaydet
+              </Button>
+            </Modal.Footer>
+          </form>
+        </Modal>
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
@@ -205,4 +256,5 @@ export default connect(mapStateToProps, {
   updateArea,
   addTable,
   deleteTable,
+  updateTable,
 })(DefineTable);

@@ -3,6 +3,7 @@ export const DELETE_AREA = "DELETE_AREA";
 export const UPDATE_AREA = "UPDATE_AREA";
 export const ADD_TABLE = "ADD_TABLE";
 export const DELETE_TABLE = "DELETE_TABLE";
+export const UPDATE_TABLE = "UPDATE_TABLE";
 
 export const addArea = (area) => {
   return { type: ADD_AREA, payload: area };
@@ -19,4 +20,7 @@ export const addTable = (areaId) => {
 
 export const deleteTable = (tableId) => {
   return { type: DELETE_TABLE, payload: tableId };
+};
+export const updateTable = (tableId, tableName) => {
+  return { type: UPDATE_TABLE, payload: { tableId, tableName } };
 };

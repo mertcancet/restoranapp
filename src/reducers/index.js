@@ -63,6 +63,21 @@ export const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         table: state.table.filter((table) => table.tableId !== action.payload),
       };
+    case "UPDATE_TABLE":
+      return {
+        ...state,
+        table: state.table.map((table) => {
+          if (table.tableId === action.payload.tableId) {
+            return {
+              tableId: table.tableId,
+              tableName: action.payload.tableName,
+              areaId: table.areaId,
+            };
+          }
+          return table;
+        }),
+      };
+
     default:
       return state;
   }
