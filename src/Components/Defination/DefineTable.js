@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Tabs, Tab, Button, Modal } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./Definetable.css";
+
 import {
   addArea,
   deleteArea,
@@ -16,12 +16,13 @@ const DefineTable = (props) => {
   //DEFINE TABLE STATE//
   const [tableIdForModal, setTableIdForModal] = useState();
   const [tableNameForRedux, setTableNameForRedux] = useState("");
-
+  //EDIT AREA NAME STATE//
+  const [editAreaId, setEditAreaId] = useState();
+  const [editAreaName, setEditAreaName] = useState("");
   //MODAL STATE//
   const [key, setKey] = useState("");
   const [show, setShow] = useState(false);
   const [areaName, setAreaName] = useState("");
-  const [editAreaName, setEditAreaName] = useState("");
   const [showChangeAraeName, setShowChangeAraeName] = useState(false);
   const [editTableModalShow, setEditTableModalShow] = useState(false);
 
@@ -52,11 +53,6 @@ const DefineTable = (props) => {
     props.deleteArea(id);
   }
 
-  function areaNameUpdateSubmit(e, areaId) {
-    e.preventDefault();
-    props.updateArea(areaId, editAreaName);
-  }
-
   function addTableHandle(areaId) {
     props.addTable(areaId);
   }
@@ -71,9 +67,18 @@ const DefineTable = (props) => {
   function editTableHandle(e) {
     e.preventDefault();
 
-    console.log("input value", tableNameForRedux);
-    console.log("tableId:", tableIdForModal);
+  
     props.updateTable(tableIdForModal, tableNameForRedux);
+  }
+
+  function areaNameUpdateSubmit(e, areaId) {
+    e.preventDefault();
+    props.updateArea(areaId, editAreaName);
+  }
+
+  function editAreaHandle(areaId) {
+    setEditAreaId(areaId);
+    handleShowChangeAreaNameModal();
   }
 
   // console.log("props geldi", props);
@@ -94,24 +99,11 @@ const DefineTable = (props) => {
                   title={mekan.areaName}
                 >
                   <div className="card-body">
-                    <form
-                      className="alert alert-primary m-5"
-                      onSubmit={(e) => areaNameUpdateSubmit(e, mekan.areaId)}
-                    >
-                      <h1>mekan adı:{mekan.areaName}</h1>
-                      <input
-                        onChange={(e) => setEditAreaName(e.target.value)}
-                      ></input>
-                      <button type="submit" className="alert alert-danger">
-                        Bölge ismini değiştir
-                      </button>
-                    </form>
-
                     <button
                       key={Math.random()}
                       variant="outline-danger"
                       className="btn btn-danger m-3 addTableBtn"
-                      onClick={handleShowChangeAreaNameModal}
+                      onClick={() => editAreaHandle(mekan.areaId)}
                     >
                       Bölge İsmi Değiştir
                     </button>
@@ -134,7 +126,7 @@ const DefineTable = (props) => {
 
                     <button
                       variant="danger"
-                      className="btn btn-danger addTableBtn"
+                      className="btn btn-danger addTableBtn ml-2"
                       onClick={() => addTableHandle(mekan.areaId)}
                     >
                       Masa Ekle{}
@@ -216,6 +208,7 @@ const DefineTable = (props) => {
             </Modal.Footer>
           </form>
         </Modal>
+
         <Modal
           show={showChangeAraeName}
           onHide={handleCloseChangeAreaNameModal}
@@ -223,21 +216,29 @@ const DefineTable = (props) => {
           <Modal.Header closeButton>
             <Modal.Title>Bölge İsmi Değiştir</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            <p>isimli yerin adını değiştiriyosunuz</p>
-            <input></input>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button
-              variant="secondary"
-              onClick={handleCloseChangeAreaNameModal}
-            >
-              Kapat
-            </Button>
-            <Button variant="danger" onClick={handleCloseChangeAreaNameModal}>
-              Kaydet
-            </Button>
-          </Modal.Footer>
+
+          <form onSubmit={(e) => areaNameUpdateSubmit(e, editAreaId)}>
+            <Modal.Body>
+              <p>isimli yerin adını değiştiriyosunuz</p>
+              <input onChange={(e) => setEditAreaName(e.target.value)}></input>
+            </Modal.Body>
+
+            <Modal.Footer>
+              <Button
+                variant="secondary"
+                onClick={handleCloseChangeAreaNameModal}
+              >
+                Kapat
+              </Button>
+              <Button
+                variant="danger"
+                type="submit"
+                onClick={handleCloseChangeAreaNameModal}
+              >
+                Kaydet
+              </Button>
+            </Modal.Footer>
+          </form>
         </Modal>
       </div>
     </div>
