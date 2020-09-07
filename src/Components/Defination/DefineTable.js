@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Container, Card, Tabs, Tab, Button, Modal } from "react-bootstrap";
+import { Tabs, Tab, Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Definetable.css";
 import {
@@ -79,9 +79,9 @@ const DefineTable = (props) => {
   // console.log("props geldi", props);
   return (
     <div>
-      <Container>
-        <Card className="tableCard mt-3">
-          <Card.Body>
+      <div className="container">
+        <div className="card tableCard mt-3">
+          <div>
             <Tabs
               id="controlled-tab-example"
               activeKey={key}
@@ -93,90 +93,91 @@ const DefineTable = (props) => {
                   eventKey={mekan.areaId}
                   title={mekan.areaName}
                 >
-                  <form
-                    className="alert alert-primary m-5"
-                    onSubmit={(e) => areaNameUpdateSubmit(e, mekan.areaId)}
-                  >
-                    <h1>mekan adı:{mekan.areaName}</h1>
-                    <input
-                      onChange={(e) => setEditAreaName(e.target.value)}
-                    ></input>
-                    <button type="submit" className="alert alert-danger">
-                      Bölge ismini değiştir
-                    </button>
-                  </form>
-
-                  <Button
-                    key={Math.random()}
-                    variant="outline-danger"
-                    className="m-3 addTableBtn"
-                    onClick={handleShowChangeAreaNameModal}
-                  >
-                    Bölge İsmi Değiştir
-                  </Button>
-                  <Button
-                    key={mekan.areaId}
-                    variant="outline-danger"
-                    className="m-3 addTableBtn"
-                    onClick={() => deleteAreaHandle(mekan.areaId)}
-                  >
-                    Bölge Sil
-                  </Button>
-                  <Button
-                    className="m-3 addTableBtn"
-                    variant="danger"
-                    onClick={handleShow}
-                  >
-                    Bölge Ekle
-                  </Button>
-                  <br />
-
-                  <Button
-                    variant="danger"
-                    className="addTableBtn"
-                    onClick={() => addTableHandle(mekan.areaId)}
-                  >
-                    Masa Ekle{}
-                  </Button>
-                  {props.table.map((masa) =>
-                    masa.areaId === mekan.areaId ? (
-                      <button
-                        key={masa.tableId}
-                        className="tableBtn mx-2 my-1"
-                        onClick={() => editTableName(masa.tableId)}
-                      >
-                        {masa.tableName}
-                        <button
-                          type="button"
-                          className="close "
-                          aria-label="Close"
-                          onClick={(e) => deleteTableHandle(e, masa.tableId)}
-                        >
-                          <span aria-hidden="true" className="text-white">
-                            &times;
-                          </span>
-                        </button>
+                  <div className="card-body">
+                    <form
+                      className="alert alert-primary m-5"
+                      onSubmit={(e) => areaNameUpdateSubmit(e, mekan.areaId)}
+                    >
+                      <h1>mekan adı:{mekan.areaName}</h1>
+                      <input
+                        onChange={(e) => setEditAreaName(e.target.value)}
+                      ></input>
+                      <button type="submit" className="alert alert-danger">
+                        Bölge ismini değiştir
                       </button>
-                    ) : (
-                      ""
-                    )
-                  )}
+                    </form>
+
+                    <button
+                      key={Math.random()}
+                      variant="outline-danger"
+                      className="btn btn-danger m-3 addTableBtn"
+                      onClick={handleShowChangeAreaNameModal}
+                    >
+                      Bölge İsmi Değiştir
+                    </button>
+                    <button
+                      key={mekan.areaId}
+                      variant="outline-danger"
+                      className="btn btn-danger m-3 addTableBtn"
+                      onClick={() => deleteAreaHandle(mekan.areaId)}
+                    >
+                      Bölge Sil
+                    </button>
+                    <button
+                      className="btn btn-danger m-3 addTableBtn"
+                      variant="danger"
+                      onClick={handleShow}
+                    >
+                      Bölge Ekle
+                    </button>
+                    <br />
+
+                    <button
+                      variant="danger"
+                      className="btn btn-danger addTableBtn"
+                      onClick={() => addTableHandle(mekan.areaId)}
+                    >
+                      Masa Ekle{}
+                    </button>
+                    {props.table.map((masa) =>
+                      masa.areaId === mekan.areaId ? (
+                        <button
+                          key={masa.tableId}
+                          className="tableBtn mx-2 my-1"
+                          onClick={() => editTableName(masa.tableId)}
+                        >
+                          {masa.tableName}
+                          <button
+                            type="button"
+                            className="close "
+                            aria-label="Close"
+                            onClick={(e) => deleteTableHandle(e, masa.tableId)}
+                          >
+                            <span aria-hidden="true" className="text-white">
+                              &times;
+                            </span>
+                          </button>
+                        </button>
+                      ) : (
+                        ""
+                      )
+                    )}
+                  </div>
                 </Tab>
               ))}
             </Tabs>
-          </Card.Body>
-        </Card>
+          </div>
+        </div>
 
         <Modal show={editTableModalShow} onHide={editTableModalHandleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>
-              Masa Adı Güncelle tableId: {tableIdForModal}
-            </Modal.Title>
+            <Modal.Title>Masa Adı Güncelle</Modal.Title>
           </Modal.Header>
           <form onSubmit={(e) => editTableHandle(e)}>
             <Modal.Body>
-              <p>Masa Adı Giriniz:</p>
+              <p className="d-inline">Masa Adı Giriniz: </p>
               <input
+                className="d-inline"
                 onChange={(e) => setTableNameForRedux(e.target.value)}
               ></input>
             </Modal.Body>
@@ -238,7 +239,7 @@ const DefineTable = (props) => {
             </Button>
           </Modal.Footer>
         </Modal>
-      </Container>
+      </div>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Container, Card, Tabs, Tab } from "react-bootstrap";
+import { Tabs, Tab } from "react-bootstrap";
 import Tabless from "../Tables/Tables1";
 import "./MainScreen.css";
 
@@ -8,9 +8,9 @@ function MainScreen(props) {
   const [key, setKey] = useState("ic-mekan");
   return (
     <div className="mainScreen">
-      <Container>
-        <Card className="tableCard mt-3">
-          <Card.Body>
+      <div className="container">
+        <div className="card tableCard mt-3">
+          <div className="m-1">
             <Tabs
               id="controlled-tab-example"
               activeKey={key}
@@ -32,9 +32,9 @@ function MainScreen(props) {
                 </Tab>
               ))}
             </Tabs>
-          </Card.Body>
-        </Card>
-      </Container>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

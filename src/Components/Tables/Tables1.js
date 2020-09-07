@@ -10,16 +10,18 @@ import {
   Tab,
   Tabs,
 } from "react-bootstrap";
-
+import "./Tables.css";
 function Tables(props) {
   const [lgShow, setLgShow] = useState(false);
   const [key, setKey] = useState("ic-mekan");
 
   return (
     <>
-      <button className="tableBtn  mt-2" onClick={() => setLgShow(true)}>
-        {props.tableName}
-      </button>
+      <div className="m-1 d-inline">
+        <button className="tableBtn  mt-2" onClick={() => setLgShow(true)}>
+          {props.tableName}
+        </button>
+      </div>
 
       <Modal
         size="lg"
