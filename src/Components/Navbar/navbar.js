@@ -10,7 +10,7 @@ export class TopNavbar extends Component {
     return (
       <div className="styled">
         <Navbar expand="lg">
-          <Navbar.Brand onClick={() => history && history.push("/anasayfa")}>
+          <Navbar.Brand onClick={() => history && history.push("/")}>
             Tutorial
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -20,7 +20,7 @@ export class TopNavbar extends Component {
               <Nav.Item>
                 <Nav.Link
                   className="text-white"
-                  onClick={() => history && history.push("/anasayfa")}
+                  onClick={() => history && history.push("/")}
                 >
                   Ana Sayfa
                 </Nav.Link>

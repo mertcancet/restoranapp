@@ -26,20 +26,20 @@ const DefineTable = (props) => {
   const [showChangeAraeName, setShowChangeAraeName] = useState(false);
   const [editTableModalShow, setEditTableModalShow] = useState(false);
 
+  //SHOW MODAL FUNCTIONS
   const editTableModalHandleClose = () => setEditTableModalShow(false);
   const editTableModalHandleShow = () => setEditTableModalShow(true);
-
   const handleShow = () => setShow(true);
   const handleCloseChangeAreaNameModal = () => {
     setShowChangeAraeName(false);
   };
   const handleShowChangeAreaNameModal = () => setShowChangeAraeName(true);
-
   const handleClose = () => {
     setShow(false);
     setAreaName("");
   };
 
+  //ADD AREA FUNCTIONS
   function addAreaHandle(e) {
     setAreaName(e);
   }
@@ -48,18 +48,20 @@ const DefineTable = (props) => {
     props.addArea(areaName);
     setShow(false);
   }
-
-  function deleteAreaHandle(id) {
-    props.deleteArea(id);
-  }
-
+  //ADD TABLE FUNCTION
   function addTableHandle(areaId) {
     props.addTable(areaId);
   }
+  //DELETE AREA FUNCTIONS
+  function deleteAreaHandle(id) {
+    props.deleteArea(id);
+  }
+  //DELETE TABLE FUNCTIONS
   function deleteTableHandle(e, tableId) {
     e.stopPropagation();
     props.deleteTable(tableId);
   }
+  //EDIT TABLE NAME FUNCTIONS
   function editTableName(tableId) {
     editTableModalHandleShow();
     setTableIdForModal(tableId);
@@ -67,10 +69,9 @@ const DefineTable = (props) => {
   function editTableHandle(e) {
     e.preventDefault();
 
-  
     props.updateTable(tableIdForModal, tableNameForRedux);
   }
-
+  //EDIT AREA NAME FUNCTIONS
   function areaNameUpdateSubmit(e, areaId) {
     e.preventDefault();
     props.updateArea(areaId, editAreaName);
