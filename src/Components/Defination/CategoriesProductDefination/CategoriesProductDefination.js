@@ -5,7 +5,6 @@ import ProductDefination from "./Products/ProductDefination";
 const CategoriesProductDefination = () => {
   return (
     <div>
-      <h1>KATEGORİ VE ÜRÜN TANIMLAMA</h1>
       <div className="row no-gutters">
         <div className="col-sm-12 col-md-4 col-lg-2 border border-primary">
           <CategoriesDefination />

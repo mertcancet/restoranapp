@@ -1,8 +1,8 @@
 import React from "react";
-
+import "./ProductDefination.css";
 const ProductDefination = () => {
   return (
-    <div className="card m-3">
+    <div className="card m-3 products">
       <h1 className="text-center">Ürün Ekleme</h1>
       <form className="m-2">
         <div className="col-auto">
@@ -29,7 +29,7 @@ const ProductDefination = () => {
             <div className="col-md-4">
               <input type="number" className="form-control" />
             </div>
-            <label className=" col-form-label">TL</label>
+            <label className=" col-form-label text-sm-right">TL</label>
           </div>
         </div>
 
@@ -43,10 +43,21 @@ const ProductDefination = () => {
                 id="customSwitch1"
               />
 
-              <label className="custom-control-label" for="customSwitch1">
+              <label className="custom-control-label" htmlFor="customSwitch1">
                 Adet
               </label>
             </div>
+          </div>
+        </div>
+        <div className="col-auto row">
+          <div className="col-md-7"></div>
+          <div className="col-xl-2 ">
+            <button
+              className="btn btn-danger products__addButton"
+              type="submit"
+            >
+              Ürün Ekle/Düzenle
+            </button>
           </div>
         </div>
       </form>
