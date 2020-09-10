@@ -6,7 +6,7 @@ const CategoriesDefination = () => {
   const [open, setOpen] = useState(false);
   return (
     <div>
-      <button className="btn btn-danger border border-top categoriesButton">
+      <button className="btn btn-danger border border-top categoriesButton mb-2">
         Kategori Ekle
       </button>
 
@@ -24,6 +24,7 @@ const CategoriesDefination = () => {
             Kategori Düzenle
           </button>
           <button className="btn btn-danger deleteButton">Kategori Sil</button>
+
           <Products />
         </div>
       </Collapse>

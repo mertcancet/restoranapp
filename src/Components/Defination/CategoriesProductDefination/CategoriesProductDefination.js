@@ -1,6 +1,7 @@
 import React from "react";
 import "./CategoriesProductDefination.css";
 import CategoriesDefination from "./Categories/CategoriesDefination";
+import ProductDefination from "./Products/ProductDefination";
 const CategoriesProductDefination = () => {
   return (
     <div>
@@ -10,7 +11,7 @@ const CategoriesProductDefination = () => {
           <CategoriesDefination />
         </div>
         <div className="col-sm-12 col-md-8  col-lg-10 border border-danger">
-          col-sm-10
+          <ProductDefination />
         </div>
       </div>
     </div>
