@@ -10,10 +10,13 @@ const INITIAL_STATE = {
     { tableId: 3, areaId: 1, tableName: "Masa 4" },
     { tableId: 4, areaId: 1, tableName: "Masa 5" },
   ],
+  category: [{ categoryId: 0, categoryName: "İçecekler" }],
 };
 
 export const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    //AREA
+
     case "ADD_AREA":
       return {
         ...state,
@@ -44,6 +47,8 @@ export const reducer = (state = INITIAL_STATE, action) => {
           return area;
         }),
       };
+
+    //TABLE
 
     case "ADD_TABLE":
       return {
@@ -76,6 +81,19 @@ export const reducer = (state = INITIAL_STATE, action) => {
           }
           return table;
         }),
+      };
+
+    //CATEGORY
+    case "ADD_CATEGORY":
+      return {
+        ...state,
+        category: [
+          ...state.category,
+          {
+            categoryId: Math.random(),
+            categoryName: action.payload,
+          },
+        ],
       };
 
     default:

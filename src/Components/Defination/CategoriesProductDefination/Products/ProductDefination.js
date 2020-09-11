@@ -27,7 +27,7 @@ const ProductDefination = () => {
           <div className="form-group row mx-auto text-md-right">
             <label className="col-md-4 col-form-label ">Fiyat</label>
             <div className="col-md-4">
-              <input type="number" className="form-control" />
+              <input type="number" className="form-control" min="0" />
             </div>
             <label className=" col-form-label text-sm-right">TL</label>
           </div>
