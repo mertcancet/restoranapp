@@ -1,6 +1,11 @@
-.categories{
+.categories {
   height: 90vh;
+  overflow: hidden;
 }
+.categories:hover {
+  overflow-y: auto;
+}
+
 .categoriesButton {
   width: 100%;
   border-radius: 0%;

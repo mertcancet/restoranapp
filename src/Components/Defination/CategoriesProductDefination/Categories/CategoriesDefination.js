@@ -3,7 +3,7 @@ import { Collapse, Modal } from "react-bootstrap";
 import "./CategoriesDefination.css";
 import Products from "./Products/Products";
 
-import { addCategory } from "../../../actions/action";
+import { addCategory, deleteCategory } from "../../../../actions/action";
 import { connect } from "react-redux";
 
 const CategoriesDefination = (props) => {
@@ -22,38 +22,21 @@ const CategoriesDefination = (props) => {
     e.preventDefault();
     props.addCategory(addCategory);
   }
+  function deleteCategoryHandle(categoryId) {
+    props.deleteCategory(categoryId);
+  }
 
-  console.log("props.category", props.category);
   return (
-    <div className="categories">
+    <div className="categories card mt-3 ">
       <button
-        className="btn btn-danger border border-top categoriesButton mb-2"
+        className="btn btn-danger border border-top categoriesButton mb-2 sticky-top"
         onClick={addCategoriesHandleShow}
       >
         Kategori Ekle
       </button>
 
-      <button
-        className="btn btn-secondary categoriesButton"
-        onClick={() => setOpen(!open)}
-        aria-controls="example-collapse-text"
-        aria-expanded={open}
-      >
-        İçeçekler
-      </button>
-      <Collapse in={open}>
-        <div id="example-collapse-text">
-          <button className="btn btn-success editButton">
-            Kategori Düzenle
-          </button>
-          <button className="btn btn-danger deleteButton">Kategori Sil</button>
-
-          <Products />
-        </div>
-      </Collapse>
-
       {props.category.map((category) => (
-        <div>
+        <div key={category.categoryId}>
           <button
             className="btn btn-secondary categoriesButton"
             onClick={() => setOpen(!open)}
@@ -68,7 +51,10 @@ const CategoriesDefination = (props) => {
               <button className="btn btn-success editButton">
                 Kategori Düzenle
               </button>
-              <button className="btn btn-danger deleteButton">
+              <button
+                className="btn btn-danger deleteButton"
+                onClick={() => deleteCategoryHandle(category.categoryId)}
+              >
                 Kategori Sil
               </button>
 
@@ -120,4 +106,6 @@ const mapStateToProps = (state) => {
     category: state.category,
   };
 };
-export default connect(mapStateToProps, { addCategory })(CategoriesDefination);
+export default connect(mapStateToProps, { addCategory, deleteCategory })(
+  CategoriesDefination
+);

@@ -10,7 +10,7 @@ import {
   addTable,
   deleteTable,
   updateTable,
-} from "../actions/action";
+} from "../../actions/action";
 
 const DefineTable = (props) => {
   //DEFINE TABLE STATE//

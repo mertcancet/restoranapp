@@ -8,7 +8,7 @@ export const DELETE_TABLE = "DELETE_TABLE";
 export const UPDATE_TABLE = "UPDATE_TABLE";
 //CATEGORY
 export const ADD_CATEGORY = "ADD_CATEGORY";
-
+export const DELETE_CATEGORY = "DELETE_CATEGORY";
 //
 
 //                 ----
@@ -41,4 +41,7 @@ export const updateTable = (tableId, tableName) => {
 //CATEGORY
 export const addCategory = (category) => {
   return { type: ADD_CATEGORY, payload: category };
+};
+export const deleteCategory = (categoryId) => {
+  return { type: DELETE_CATEGORY, payload: categoryId };
 };

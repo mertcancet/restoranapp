@@ -6,10 +6,10 @@ const CategoriesProductDefination = () => {
   return (
     <div>
       <div className="row no-gutters">
-        <div className="col-sm-12 col-md-4 col-lg-2 border border-primary">
+        <div className="col-sm-12 col-md-4 col-lg-2">
           <CategoriesDefination />
         </div>
-        <div className="col-sm-12 col-md-8  col-lg-10 border border-danger">
+        <div className="col-sm-12 col-md-8  col-lg-10 ">
           <ProductDefination />
         </div>
       </div>

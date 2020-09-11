@@ -95,7 +95,17 @@ export const reducer = (state = INITIAL_STATE, action) => {
           },
         ],
       };
+    //DELETE CATEGORY, PRODUCT KISMI EKLENDİKTEN SONRA GÜNCELLENECEK.
+    //CATEGORY İCERİSİNDEKİ PRODUCTLARINDA SİLİNMESİ GEREKECEK
+    case "DELETE_CATEGORY":
+      return {
+        ...state,
+        category: state.category.filter(
+          (category) => category.categoryId !== action.payload
+        ),
+      };
 
+    //DEFAULT
     default:
       return state;
   }
