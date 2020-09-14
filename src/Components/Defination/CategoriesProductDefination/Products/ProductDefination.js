@@ -1,18 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
+import { connect } from "react-redux";
 import "./ProductDefination.css";
-const ProductDefination = () => {
+import { addProduct } from "../../../../actions/action";
+const ProductDefination = (props) => {
+  //--PRODUCT STATE
+  const [addProductName, setAddProductName] = useState();
+  const [addProductPrice, setAddProductPrice] = useState();
+  const [addProductCategory, setAddProductCategory] = useState();
+  //--PRODUCT FUNCTION
+  function addProductHandle(e) {
+    e.preventDefault();
+
+    props.addProduct(addProductCategory, addProductName, addProductPrice);
+  }
+  console.log("props.product", props.product);
   return (
     <div className="card m-3 products">
       <h1 className="text-center">Ürün Ekleme</h1>
-      <form className="m-2">
+      <form className="m-2" onSubmit={(e) => addProductHandle(e)}>
         <div className="col-auto">
           <div className="form-group row mx-auto text-md-right">
             <label className="col-md-4 col-form-label ">Kategori</label>
+
             <div className="col-md-4">
-              <select className="form-control">
-                <option defaultValue>İçeçekler</option>
-                <option>Ana Yemek</option>
-                <option>Tatlı</option>
+              <select
+                className="form-control"
+                onChange={(e) => setAddProductCategory(e.target.value)}
+              >
+                <option defaultValue>Kategori Seciniz</option>
+                {props.category.map((category) => (
+                  <option key={category.categoryId} value={category.categoryId}>
+                    {category.categoryName}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
@@ -20,14 +40,22 @@ const ProductDefination = () => {
           <div className="form-group row mx-auto text-md-right">
             <label className="col-md-4 col-form-label ">Ürün Adı</label>
             <div className="col-md-4">
-              <input className="form-control" />
+              <input
+                className="form-control"
+                onChange={(e) => setAddProductName(e.target.value)}
+              />
             </div>
           </div>
 
           <div className="form-group row mx-auto text-md-right">
             <label className="col-md-4 col-form-label ">Fiyat</label>
             <div className="col-md-4">
-              <input type="number" className="form-control" min="0" />
+              <input
+                type="number"
+                className="form-control"
+                min="0"
+                onChange={(e) => setAddProductPrice(e.target.value)}
+              />
             </div>
             <label className=" col-form-label text-sm-right">TL</label>
           </div>
@@ -61,7 +89,20 @@ const ProductDefination = () => {
           </div>
         </div>
       </form>
+
+      {props.product.map((product) => (
+        <h1 key={Math.random()}>
+          {product.productName} || {product.categoryId}||
+          {product.productId}|| {product.productPrice}{" "}
+        </h1>
+      ))}
     </div>
   );
 };
-export default ProductDefination;
+const mapStateToProps = (state) => {
+  return {
+    category: state.category,
+    product: state.product,
+  };
+};
+export default connect(mapStateToProps, { addProduct })(ProductDefination);

@@ -12,6 +12,8 @@ export const DELETE_CATEGORY = "DELETE_CATEGORY";
 export const UPDATE_CATEGORY = "UPDATE_CATEGORY";
 export const SHOW_CATEGORY_DETAIL = "SHOW_CATEGORY_DETAIL";
 
+//-PRODUCT
+export const ADD_PRODUCT = "ADD_PRODUCT";
 //!
 
 //                 ----
@@ -54,4 +56,12 @@ export const showCategoryDetail = (categoryId) => {
 };
 export const updateCategory = (categoryId, categoryName) => {
   return { type: UPDATE_CATEGORY, payload: { categoryId, categoryName } };
+};
+
+//-PRODUCT
+export const addProduct = (categoryId, productName, productPrice) => {
+  return {
+    type: ADD_PRODUCT,
+    payload: { categoryId, productName, productPrice },
+  };
 };

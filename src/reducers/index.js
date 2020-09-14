@@ -11,6 +11,9 @@ const INITIAL_STATE = {
     { tableId: 4, areaId: 1, tableName: "Masa 5" },
   ],
   category: [{ categoryId: 0, categoryName: "İçecekler", openStatus: false }],
+  product: [
+    { productId: 0, categoryId: 0, productName: "Cola", productPrice: 7 },
+  ],
 };
 
 export const reducer = (state = INITIAL_STATE, action) => {
@@ -140,6 +143,22 @@ export const reducer = (state = INITIAL_STATE, action) => {
             };
           }
         }),
+      };
+
+    //--PRODUCT
+    case "ADD_PRODUCT":
+      console.log("add product redux");
+      return {
+        ...state,
+        product: [
+          ...state.product,
+          {
+            productId: Math.random(),
+            categoryId: action.payload.categoryId,
+            productName: action.payload.productName,
+            productPrice: action.payload.productPrice,
+          },
+        ],
       };
     //--DEFAULT
     default:
