@@ -1,23 +1,25 @@
 import React, { useState } from "react";
 import { Collapse, Modal } from "react-bootstrap";
 import "./CategoriesDefination.css";
-import Products from "./Products/Products";
+import Products from "./Categories-Product/Products";
 
-import { addCategory, deleteCategory } from "../../../../actions/action";
+import {
+  addCategory,
+  deleteCategory,
+  showCategoryDetail,
+} from "../../../../actions/action";
 import { connect } from "react-redux";
 
 const CategoriesDefination = (props) => {
-  const [open, setOpen] = useState(false);
-
-  //ADD CATEGORY MODAL
+  //-ADD CATEGORY MODAL
   const [addCategoriesShow, setAddCategoriesShow] = useState(false);
   const addCategoriesHandleClose = () => setAddCategoriesShow(false);
   const addCategoriesHandleShow = () => setAddCategoriesShow(true);
 
-  // CATEGORY STATE
+  //- CATEGORY STATE
   const [addCategory, setAddCategory] = useState();
 
-  //CATEGORY FUNCTION
+  //-CATEGORY FUNCTION
   function addCategoryHandle(e) {
     e.preventDefault();
     props.addCategory(addCategory);
@@ -25,7 +27,11 @@ const CategoriesDefination = (props) => {
   function deleteCategoryHandle(categoryId) {
     props.deleteCategory(categoryId);
   }
-
+  function openCategoryDetail(categoryId) {
+    props.showCategoryDetail(categoryId);
+  }
+  
+  //- console.log(props);
   return (
     <div className="categories card mt-3 ">
       <button
@@ -34,19 +40,18 @@ const CategoriesDefination = (props) => {
       >
         Kategori Ekle
       </button>
-
       {props.category.map((category) => (
         <div key={category.categoryId}>
           <button
             className="btn btn-secondary categoriesButton"
-            onClick={() => setOpen(!open)}
+            onClick={() => openCategoryDetail(category.categoryId)}
             aria-controls="example-collapse-text"
-            aria-expanded={open}
+            aria-expanded={category.openStatus}
           >
             {category.categoryName}
           </button>
 
-          <Collapse in={open}>
+          <Collapse in={category.openStatus}>
             <div id="example-collapse-text">
               <button className="btn btn-success editButton">
                 Kategori Düzenle
@@ -63,7 +68,6 @@ const CategoriesDefination = (props) => {
           </Collapse>
         </div>
       ))}
-
       {/*  ADD CATEGORY MODAL */}
 
       <Modal show={addCategoriesShow} onHide={addCategoriesHandleClose}>
@@ -106,6 +110,8 @@ const mapStateToProps = (state) => {
     category: state.category,
   };
 };
-export default connect(mapStateToProps, { addCategory, deleteCategory })(
-  CategoriesDefination
-);
+export default connect(mapStateToProps, {
+  addCategory,
+  deleteCategory,
+  showCategoryDetail,
+})(CategoriesDefination);

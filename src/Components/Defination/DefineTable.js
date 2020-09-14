@@ -13,20 +13,20 @@ import {
 } from "../../actions/action";
 
 const DefineTable = (props) => {
-  //DEFINE TABLE STATE//
+  //-DEFINE TABLE STATE//
   const [tableIdForModal, setTableIdForModal] = useState();
   const [tableNameForRedux, setTableNameForRedux] = useState("");
-  //EDIT AREA NAME STATE//
+  //-EDIT AREA NAME STATE//
   const [editAreaId, setEditAreaId] = useState();
   const [editAreaName, setEditAreaName] = useState("");
-  //MODAL STATE//
+  //-MODAL STATE//
   const [key, setKey] = useState("");
   const [show, setShow] = useState(false);
   const [areaName, setAreaName] = useState("");
   const [showChangeAraeName, setShowChangeAraeName] = useState(false);
   const [editTableModalShow, setEditTableModalShow] = useState(false);
 
-  //SHOW MODAL FUNCTIONS
+  //-SHOW MODAL FUNCTIONS
   const editTableModalHandleClose = () => setEditTableModalShow(false);
   const editTableModalHandleShow = () => setEditTableModalShow(true);
   const handleShow = () => setShow(true);
@@ -39,7 +39,7 @@ const DefineTable = (props) => {
     setAreaName("");
   };
 
-  //ADD AREA FUNCTIONS
+  //-ADD AREA FUNCTIONS
   function addAreaHandle(e) {
     setAreaName(e);
   }
@@ -48,20 +48,20 @@ const DefineTable = (props) => {
     props.addArea(areaName);
     setShow(false);
   }
-  //ADD TABLE FUNCTION
+  //-ADD TABLE FUNCTION
   function addTableHandle(areaId) {
     props.addTable(areaId);
   }
-  //DELETE AREA FUNCTIONS
+  //-DELETE AREA FUNCTIONS
   function deleteAreaHandle(id) {
     props.deleteArea(id);
   }
-  //DELETE TABLE FUNCTIONS
+  //-DELETE TABLE FUNCTIONS
   function deleteTableHandle(e, tableId) {
     e.stopPropagation();
     props.deleteTable(tableId);
   }
-  //EDIT TABLE NAME FUNCTIONS
+  //-EDIT TABLE NAME FUNCTIONS
   function editTableName(tableId) {
     editTableModalHandleShow();
     setTableIdForModal(tableId);
@@ -71,7 +71,7 @@ const DefineTable = (props) => {
 
     props.updateTable(tableIdForModal, tableNameForRedux);
   }
-  //EDIT AREA NAME FUNCTIONS
+  //-EDIT AREA NAME FUNCTIONS
   function areaNameUpdateSubmit(e, areaId) {
     e.preventDefault();
     props.updateArea(areaId, editAreaName);
@@ -82,7 +82,7 @@ const DefineTable = (props) => {
     handleShowChangeAreaNameModal();
   }
 
-  // console.log("props geldi", props);
+  // --  console.log("props geldi", props);
   return (
     <div>
       <div className="container">
@@ -108,6 +108,7 @@ const DefineTable = (props) => {
                     >
                       Bölge İsmi Değiştir
                     </button>
+
                     <button
                       key={mekan.areaId}
                       variant="outline-danger"

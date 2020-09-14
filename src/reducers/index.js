@@ -10,12 +10,12 @@ const INITIAL_STATE = {
     { tableId: 3, areaId: 1, tableName: "Masa 4" },
     { tableId: 4, areaId: 1, tableName: "Masa 5" },
   ],
-  category: [{ categoryId: 0, categoryName: "İçecekler" }],
+  category: [{ categoryId: 0, categoryName: "İçecekler", openStatus: false }],
 };
 
 export const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    //AREA
+    //-AREA
 
     case "ADD_AREA":
       return {
@@ -48,7 +48,7 @@ export const reducer = (state = INITIAL_STATE, action) => {
         }),
       };
 
-    //TABLE
+    //--TABLE
 
     case "ADD_TABLE":
       return {
@@ -83,7 +83,7 @@ export const reducer = (state = INITIAL_STATE, action) => {
         }),
       };
 
-    //CATEGORY
+    //-CATEGORY
     case "ADD_CATEGORY":
       return {
         ...state,
@@ -92,11 +92,13 @@ export const reducer = (state = INITIAL_STATE, action) => {
           {
             categoryId: Math.random(),
             categoryName: action.payload,
+            openStatus: false,
           },
         ],
       };
-    //DELETE CATEGORY, PRODUCT KISMI EKLENDİKTEN SONRA GÜNCELLENECEK.
-    //CATEGORY İCERİSİNDEKİ PRODUCTLARINDA SİLİNMESİ GEREKECEK
+
+    //TODO DELETE CATEGORY, PRODUCT KISMI EKLENDİKTEN SONRA GÜNCELLENECEK.
+    //TODO CATEGORY İCERİSİNDEKİ PRODUCTLARINDA SİLİNMESİ GEREKECEK
     case "DELETE_CATEGORY":
       return {
         ...state,
@@ -105,7 +107,27 @@ export const reducer = (state = INITIAL_STATE, action) => {
         ),
       };
 
-    //DEFAULT
+    case "SHOW_CATEGORY_DETAIL":
+      return {
+        ...state,
+        category: state.category.map((category) => {
+          if (category.categoryId === action.payload) {
+          
+            return {
+              categoryId: category.categoryId,
+              categoryName: category.categoryName,
+              openStatus: true,
+            };
+          } else {
+            return {
+              categoryId: category.categoryId,
+              categoryName: category.categoryName,
+              openStatus: false,
+            };
+          }
+        }),
+      };
+    //--DEFAULT
     default:
       return state;
   }

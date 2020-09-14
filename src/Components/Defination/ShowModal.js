@@ -11,6 +11,7 @@ import {
   Tab,
   Tabs,
 } from "react-bootstrap";
+
 export class ShowModal extends Component {
   render() {
     const [lgShow, setLgShow] = useState(false);
