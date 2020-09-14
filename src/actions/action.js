@@ -9,7 +9,9 @@ export const UPDATE_TABLE = "UPDATE_TABLE";
 //-CATEGORY
 export const ADD_CATEGORY = "ADD_CATEGORY";
 export const DELETE_CATEGORY = "DELETE_CATEGORY";
+export const UPDATE_CATEGORY = "UPDATE_CATEGORY";
 export const SHOW_CATEGORY_DETAIL = "SHOW_CATEGORY_DETAIL";
+
 //!
 
 //                 ----
@@ -49,4 +51,7 @@ export const deleteCategory = (categoryId) => {
 
 export const showCategoryDetail = (categoryId) => {
   return { type: SHOW_CATEGORY_DETAIL, payload: categoryId };
+};
+export const updateCategory = (categoryId, categoryName) => {
+  return { type: UPDATE_CATEGORY, payload: { categoryId, categoryName } };
 };

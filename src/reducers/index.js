@@ -107,12 +107,26 @@ export const reducer = (state = INITIAL_STATE, action) => {
         ),
       };
 
+    case "UPDATE_CATEGORY":
+      return {
+        ...state,
+        category: state.category.map((category) => {
+          if (category.categoryId === action.payload.categoryId) {
+            return {
+              categoryId: category.categoryId,
+              categoryName: action.payload.categoryName,
+              openStatus: true,
+            };
+          }
+          return category;
+        }),
+      };
+
     case "SHOW_CATEGORY_DETAIL":
       return {
         ...state,
         category: state.category.map((category) => {
           if (category.categoryId === action.payload) {
-          
             return {
               categoryId: category.categoryId,
               categoryName: category.categoryName,

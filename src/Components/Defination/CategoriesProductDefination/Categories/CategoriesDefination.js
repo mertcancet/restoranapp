@@ -7,6 +7,7 @@ import {
   addCategory,
   deleteCategory,
   showCategoryDetail,
+  updateCategory,
 } from "../../../../actions/action";
 import { connect } from "react-redux";
 
@@ -16,13 +17,29 @@ const CategoriesDefination = (props) => {
   const addCategoriesHandleClose = () => setAddCategoriesShow(false);
   const addCategoriesHandleShow = () => setAddCategoriesShow(true);
 
+  //-UPDATE CATEGORY MODAL
+  const [updateCategoriesShow, setUpdateCategoriesShow] = useState(false);
+  const updateCategoriesHandleClose = () => setUpdateCategoriesShow(false);
+
   //- CATEGORY STATE
   const [addCategory, setAddCategory] = useState();
+  const [updateCategory, setUpdateCategory] = useState();
+  const [updateCategoryId, setUpdateCategoryId] = useState();
 
   //-CATEGORY FUNCTION
   function addCategoryHandle(e) {
     e.preventDefault();
     props.addCategory(addCategory);
+  }
+  function updateCategoryHandle(e) {
+    e.preventDefault();
+    console.log("update category", updateCategory);
+    console.log("categoyId", updateCategoryId);
+    props.updateCategory(updateCategoryId, updateCategory);
+  }
+  function showUpdateCategoryModal(categoryId) {
+    setUpdateCategoriesShow(true);
+    setUpdateCategoryId(categoryId);
   }
   function deleteCategoryHandle(categoryId) {
     props.deleteCategory(categoryId);
@@ -30,7 +47,7 @@ const CategoriesDefination = (props) => {
   function openCategoryDetail(categoryId) {
     props.showCategoryDetail(categoryId);
   }
-  
+
   //- console.log(props);
   return (
     <div className="categories card mt-3 ">
@@ -53,7 +70,10 @@ const CategoriesDefination = (props) => {
 
           <Collapse in={category.openStatus}>
             <div id="example-collapse-text">
-              <button className="btn btn-success editButton">
+              <button
+                className="btn btn-success editButton"
+                onClick={() => showUpdateCategoryModal(category.categoryId)}
+              >
                 Kategori Düzenle
               </button>
               <button
@@ -101,6 +121,40 @@ const CategoriesDefination = (props) => {
           </Modal.Footer>
         </form>
       </Modal>
+
+      {/* UPDATE CATEGORY MODAL*/}
+
+      <Modal show={updateCategoriesShow} onHide={updateCategoriesHandleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Kategori Adı Düzenle</Modal.Title>
+        </Modal.Header>
+        <form onSubmit={(e) => updateCategoryHandle(e)}>
+          <Modal.Body>
+            <div className="form-group mt-3">
+              <label className="d-inline"> Yeni Kategori Adını giriniz</label>
+              <input
+                className=" ml-2 d-inline form-group"
+                onChange={(e) => setUpdateCategory(e.target.value)}
+              ></input>
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <button
+              className="btn btn-secondary"
+              onClick={updateCategoriesHandleClose}
+            >
+              Kapat
+            </button>
+            <button
+              className="btn btn-danger"
+              onClick={updateCategoriesHandleClose}
+              type="submit"
+            >
+              Kategori Adı Düzenle
+            </button>
+          </Modal.Footer>
+        </form>
+      </Modal>
     </div>
   );
 };
@@ -114,4 +168,5 @@ export default connect(mapStateToProps, {
   addCategory,
   deleteCategory,
   showCategoryDetail,
+  updateCategory,
 })(CategoriesDefination);
