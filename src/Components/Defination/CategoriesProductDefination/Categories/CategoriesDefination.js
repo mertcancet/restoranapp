@@ -83,7 +83,7 @@ const CategoriesDefination = (props) => {
                 Kategori Sil
               </button>
 
-              <Products />
+              <Products Category={category.categoryId} />
             </div>
           </Collapse>
         </div>
