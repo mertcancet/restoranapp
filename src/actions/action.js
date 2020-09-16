@@ -14,6 +14,7 @@ export const SHOW_CATEGORY_DETAIL = "SHOW_CATEGORY_DETAIL";
 
 //-PRODUCT
 export const ADD_PRODUCT = "ADD_PRODUCT";
+export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 //!
 
 //                 ----
@@ -63,5 +64,12 @@ export const addProduct = (categoryId, productName, productPrice) => {
   return {
     type: ADD_PRODUCT,
     payload: { categoryId, productName, productPrice },
+  };
+};
+
+export const updateProduct = (productId, productName, productPrice) => {
+  return {
+    type: UPDATE_PRODUCT,
+    payload: { productId, productName, productPrice },
   };
 };

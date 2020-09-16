@@ -22,7 +22,7 @@ const ProductDefination = (props) => {
           <div className="form-group row mx-auto text-md-right">
             <label className="col-md-4 col-form-label ">Kategori</label>
 
-            <div className="col-md-4">
+            <div className="col-md-6 col-xl-4">
               <select
                 className="form-control"
                 onChange={(e) => setAddProductCategory(e.target.value)}
@@ -39,7 +39,7 @@ const ProductDefination = (props) => {
 
           <div className="form-group row mx-auto text-md-right">
             <label className="col-md-4 col-form-label ">Ürün Adı</label>
-            <div className="col-md-4">
+            <div className="col-md-6 col-xl-4">
               <input
                 className="form-control"
                 onChange={(e) => setAddProductName(e.target.value)}
@@ -49,7 +49,7 @@ const ProductDefination = (props) => {
 
           <div className="form-group row mx-auto text-md-right">
             <label className="col-md-4 col-form-label ">Fiyat</label>
-            <div className="col-md-4">
+            <div className="col-md-6 col-xl-4 ">
               <input
                 type="number"
                 className="form-control"
@@ -67,7 +67,7 @@ const ProductDefination = (props) => {
             <div className="custom-control custom-switch float-left pt-2">
               <input
                 type="checkbox"
-                className="custom-control-input"
+                className="custom-control-input "
                 id="customSwitch1"
               />
 
@@ -89,13 +89,6 @@ const ProductDefination = (props) => {
           </div>
         </div>
       </form>
-
-      {props.product.map((product) => (
-        <h1 key={Math.random()}>
-          {product.productName} || {product.categoryId}||
-          {product.productId}|| {product.productPrice}{" "}
-        </h1>
-      ))}
     </div>
   );
 };

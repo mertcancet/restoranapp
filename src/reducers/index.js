@@ -147,7 +147,6 @@ export const reducer = (state = INITIAL_STATE, action) => {
 
     //--PRODUCT
     case "ADD_PRODUCT":
-      console.log("add product redux");
       return {
         ...state,
         product: [
@@ -160,6 +159,22 @@ export const reducer = (state = INITIAL_STATE, action) => {
           },
         ],
       };
+    case "UPDATE_PRODUCT":
+      return {
+        ...state,
+        product: state.product.map((product) => {
+          if (product.productId === action.payload.productId) {
+            return {
+              productId: product.Id,
+              productName: action.payload.productName,
+              productPrice: action.payload.productPrice,
+              categoryId: product.categoryId,
+            };
+          }
+          return product;
+        }),
+      };
+
     //--DEFAULT
     default:
       return state;
