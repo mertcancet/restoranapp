@@ -15,6 +15,7 @@ export const SHOW_CATEGORY_DETAIL = "SHOW_CATEGORY_DETAIL";
 //-PRODUCT
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
 //!
 
 //                 ----
@@ -72,4 +73,8 @@ export const updateProduct = (productId, productName, productPrice) => {
     type: UPDATE_PRODUCT,
     payload: { productId, productName, productPrice },
   };
+};
+
+export const deleteProduct = (productId) => {
+  return { type: DELETE_PRODUCT, payload: productId };
 };

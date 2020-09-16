@@ -108,6 +108,9 @@ export const reducer = (state = INITIAL_STATE, action) => {
         category: state.category.filter(
           (category) => category.categoryId !== action.payload
         ),
+        product: state.product.filter(
+          (product) => product.categoryId !== action.payload
+        ),
       };
 
     case "UPDATE_CATEGORY":
@@ -159,13 +162,22 @@ export const reducer = (state = INITIAL_STATE, action) => {
           },
         ],
       };
+    case "DELETE_PRODUCT":
+      console.log("seşe");
+      return {
+        ...state,
+        product: state.product.filter(
+          (product) => product.productId !== action.payload
+        ),
+      };
+
     case "UPDATE_PRODUCT":
       return {
         ...state,
         product: state.product.map((product) => {
           if (product.productId === action.payload.productId) {
             return {
-              productId: product.Id,
+              productId: product.productId,
               productName: action.payload.productName,
               productPrice: action.payload.productPrice,
               categoryId: product.categoryId,

@@ -10,10 +10,9 @@ const ProductDefination = (props) => {
   //--PRODUCT FUNCTION
   function addProductHandle(e) {
     e.preventDefault();
-
     props.addProduct(addProductCategory, addProductName, addProductPrice);
   }
-  console.log("props.product", props.product);
+
   return (
     <div className="card m-3 products">
       <h1 className="text-center">Ürün Ekleme</h1>

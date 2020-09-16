@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { connect } from "react-redux";
-import { updateProduct } from "../../../../../actions/action";
+import { updateProduct, deleteProduct } from "../../../../../actions/action";
 const Products = (props) => {
   const [updateProductName, setUpdateProductName] = useState("");
   const [updateProductPrice, setUpdateProductPrice] = useState("");
   const [updateProductId, setUpdateProductId] = useState("");
 
   const [updateProductShow, setUpdateProductShow] = useState(false);
-
-  const updateProductHandleClose = () => setUpdateProductShow(false);
-
   const Category = parseFloat(props.Category);
+
+  const updateProductHandleClose = () => {
+    setUpdateProductShow(false);
+  };
 
   function updateProductIdHandle(productId) {
     setUpdateProductId(productId);
@@ -21,8 +22,16 @@ const Products = (props) => {
   function updateProductHandle(e) {
     e.preventDefault();
     props.updateProduct(updateProductId, updateProductName, updateProductPrice);
+    setUpdateProductName("");
+    setUpdateProductPrice("");
+    setUpdateProductId("");
   }
-  console.log(props);
+
+  function deleteProductHandle(productId) {
+    console.log({ productId });
+    props.deleteProduct(productId);
+  }
+  console.log(props.product);
   return (
     <div>
       <table className="table table-sm table-hover table-striped">
@@ -35,20 +44,24 @@ const Products = (props) => {
         </thead>
         <tbody>
           {props.product.map((product) => {
-            console.log(product.categoryId);
             if (parseFloat(product.categoryId) === Category)
               return (
                 <tr key={product.productId}>
                   <td>{product.productName}</td>
                   <td>{product.productPrice}TL</td>
                   <td>
-                    <button
-                      className=" btn-danger "
+                    <span
+                      className=" badge badge-warning cursor btn "
                       onClick={() => updateProductIdHandle(product.productId)}
                     >
                       Düzenle
-                    </button>
-                    <label className="float-right label ">Sil</label>
+                    </span>
+                    <span
+                      className="badge badge-warning ml-2 btn"
+                      onClick={() => deleteProductHandle(product.productId)}
+                    >
+                      Sil
+                    </span>
                   </td>
                 </tr>
               );
@@ -104,4 +117,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { updateProduct })(Products);
+export default connect(mapStateToProps, { updateProduct, deleteProduct })(
+  Products
+);
