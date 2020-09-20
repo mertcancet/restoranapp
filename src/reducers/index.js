@@ -10,9 +10,9 @@ const INITIAL_STATE = {
     { tableId: 3, areaId: 1, tableName: "Masa 4" },
     { tableId: 4, areaId: 1, tableName: "Masa 5" },
   ],
-  category: [{ categoryId: 0, categoryName: "İçecekler", openStatus: false }],
+  category: [{ categoryId: 1, categoryName: "İçecekler", openStatus: false }],
   product: [
-    { productId: 0, categoryId: 0, productName: "Cola", productPrice: 7 },
+    { productId: 0, categoryId: 1, productName: "Cola", productPrice: 7 },
   ],
 };
 

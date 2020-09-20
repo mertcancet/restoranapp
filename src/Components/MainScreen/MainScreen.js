@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Tabs, Tab } from "react-bootstrap";
-import Tabless from "../Tables/Tables1";
+
 import "./MainScreen.css";
+import OrderScreen from "../Order Screen/OrderScreen";
 
 function MainScreen(props) {
+  
   const [key, setKey] = useState("ic-mekan");
   return (
     <div className="mainScreen">
@@ -24,7 +26,11 @@ function MainScreen(props) {
                 >
                   {props.table.map((masa) =>
                     masa.areaId === mekan.areaId ? (
-                      <Tabless key={Math.random()} tableName={masa.tableName} />
+                      <OrderScreen
+                        key={Math.random()}
+                        tableName={masa.tableName}
+                        tableId={masa.tableId}
+                      />
                     ) : (
                       ""
                     )

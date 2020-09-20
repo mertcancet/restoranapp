@@ -28,10 +28,9 @@ const Products = (props) => {
   }
 
   function deleteProductHandle(productId) {
-    console.log({ productId });
     props.deleteProduct(productId);
   }
-  console.log(props.product);
+
   return (
     <div>
       <table className="table table-sm table-hover table-striped">

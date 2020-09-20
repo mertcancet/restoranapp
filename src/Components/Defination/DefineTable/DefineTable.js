@@ -10,7 +10,7 @@ import {
   addTable,
   deleteTable,
   updateTable,
-} from "../../actions/action";
+} from "../../../actions/action";
 
 const DefineTable = (props) => {
   //-DEFINE TABLE STATE//
@@ -99,7 +99,7 @@ const DefineTable = (props) => {
                   eventKey={mekan.areaId}
                   title={mekan.areaName}
                 >
-                  <div className="card-body">
+                  <div className=" addTable-container">
                     <button
                       key={Math.random()}
                       variant="outline-danger"

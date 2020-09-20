@@ -1,4 +1,4 @@
-.tableBtn {
+/* .tableBtn {
   border-radius: 5px;
   background-color: #333;
   color: white;
@@ -7,23 +7,22 @@
   text-align: center;
   width: 150px;
   height: 75px;
+} */
+
+.addTableBtn {
+  width: 150px;
+  height: 75px;
 }
 
-.mainScreen {
-  background-color: #f8f9fa;
-  height: 90vh;
+.addPlace {
+  background-color: red !important;
 }
 
-.tableCard {
-  height: 750px;
-  background-color: #f8f9fa;
+.addTable-container {
+  height: 700px;
   overflow: hidden;
 }
 
-.tableCard:hover {
+.addTable-container:hover {
   overflow-y: auto;
-}
-
-.tableCard--orderList {
-  height: 690px;
 }

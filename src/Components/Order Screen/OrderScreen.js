@@ -7,20 +7,20 @@ import {
   Col,
   Table,
   Button,
-  Tab,
-  Tabs,
+  Accordion,
 } from "react-bootstrap";
-
-function Tables() {
+import { connect } from "react-redux";
+import "./OrderScreen.css";
+function Tables(props) {
   const [lgShow, setLgShow] = useState(false);
-  const [key, setKey] = useState("ic-mekan");
 
   return (
-    <div>
-      <button
-        className="tableBtn mx-2 my-1"
-        onClick={() => setLgShow(true)}
-      ></button>
+    <>
+      <div className="m-1 d-inline">
+        <button className="tableBtn  mt-2" onClick={() => setLgShow(true)}>
+          {props.tableName}
+        </button>
+      </div>
 
       <Modal
         size="lg"
@@ -37,28 +37,53 @@ function Tables() {
           <Container>
             <Row>
               <Col xs={12} md={6}>
-                <Card className="tableCard mt-3">
-                  <Card.Header>Kategoriler</Card.Header>
-                  <Card.Body>
-                    <Tabs
-                      id="controlled-tab-example"
-                      activeKey={key}
-                      onSelect={(k) => setKey(k)}
-                    >
-                      <Tab eventKey="ana-yemek" title="Ana Yemek">
-                        <div className="my-2">Ana Yemek</div>
-                      </Tab>
-                      <Tab eventKey="ara-sicak" title="Ara Sıcak">
-                        <Card.Body>
-                          <div className="my-2">Ara Sıcak</div>
-                        </Card.Body>
-                      </Tab>
-                      <Tab eventKey="icecek" title="İçecek">
-                        <div className="my-2">İçecek</div>
-                      </Tab>
-                    </Tabs>
-                  </Card.Body>
-                </Card>
+                <Accordion className=" mt-3 categoryAccordion ">
+                  {props.category.map((category) => (
+                    <Card>
+                      <Card.Header>
+                        <Accordion.Toggle
+                          as={Button}
+                          variant="link"
+                          eventKey={category.categoryId}
+                        >
+                          {category.categoryName}
+                        </Accordion.Toggle>
+                      </Card.Header>
+                      <Accordion.Collapse eventKey={category.categoryId}>
+                        <div className="categoryCard">
+                          <Table
+                            bordered
+                            hover
+                            size="sm"
+                            responsive="md"
+                            className="noWrap"
+                          >
+                            <thead>
+                              <tr>
+                                <th>Ürün Adı</th>
+                                <th>Fiyatı</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {props.product.map((product) => {
+                                if (
+                                  parseFloat(product.categoryId) ===
+                                  parseFloat(category.categoryId)
+                                )
+                                  return (
+                                    <tr>
+                                      <td>{product.productName}</td>
+                                      <td>{product.productPrice}TL</td>
+                                    </tr>
+                                  );
+                              })}
+                            </tbody>
+                          </Table>
+                        </div>
+                      </Accordion.Collapse>
+                    </Card>
+                  ))}
+                </Accordion>
               </Col>
               <Col xs={12} md={6}>
                 <Card className="tableCard--orderList mt-3">
@@ -177,8 +202,15 @@ function Tables() {
           </Container>
         </Modal.Body>
       </Modal>
-    </div>
+    </>
   );
 }
 
-export default Tables;
+const mapStateToProps = (state) => {
+  return {
+    category: state.category,
+    product: state.product,
+  };
+};
+
+export default connect(mapStateToProps, {})(Tables);
